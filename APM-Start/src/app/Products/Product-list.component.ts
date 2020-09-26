@@ -23,6 +23,7 @@ export class ProductListComponent  implements OnInit {
   imageWidth = 50;
   imageMargin = 2;
   showImage = false;
+  errorMessage: string;
 
   filteredProducts: IProduct[];
 
@@ -44,8 +45,14 @@ export class ProductListComponent  implements OnInit {
   }
 
   ngOnInit(): void {
-    this.products = this.productService.getProduct();
-    this.filteredProducts = this.products;
+    this.productService.getProduct().subscribe({
+      next: products => {
+        this.products = products;
+        this.filteredProducts = this.products;
+      },
+      error: err => this.errorMessage = err
+    });
+    // this.filteredProducts = this.products;
     // because constructor will run before ngoninit thus removed from constructor
   }
 }
