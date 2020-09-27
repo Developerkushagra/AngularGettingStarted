@@ -52,7 +52,6 @@ export class ProductListComponent  implements OnInit {
       },
       error: err => this.errorMessage = err
     });
-    // this.filteredProducts = this.products;
-    // because constructor will run before ngoninit thus removed from constructor
+    
   }
 }
