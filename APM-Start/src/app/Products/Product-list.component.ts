@@ -46,12 +46,11 @@ export class ProductListComponent  implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProduct().subscribe({
-      next: products => {
+      next: (products: IProduct[]) => {
         this.products = products;
         this.filteredProducts = this.products;
       },
       error: err => this.errorMessage = err
     });
-    
   }
 }
